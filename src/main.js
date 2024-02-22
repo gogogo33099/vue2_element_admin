@@ -10,8 +10,10 @@ import Vuex from 'vuex'
 //import NProgress from 'nprogress'
 //import 'nprogress/nprogress.css'
 import routes from './routes'
+//Test Only
 import Mock from './mock'
 Mock.bootstrap();
+// font-awesome icon
 //import 'font-awesome/css/font-awesome.min.css'
 
 Vue.use(ElementUI)
