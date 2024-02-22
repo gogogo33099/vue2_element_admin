@@ -9,9 +9,9 @@
         {{ collapsed ? "" : sysName }}
       </el-col>
       <el-col :span="10">
-        <!--div class="tools" @click.prevent="collapse">
-          <i class="fa fa-align-justify"></i>
-        </div-->
+        <div class="tools" @click.prevent="collapse">
+          <i class="el-icon-s-fold"></i>
+        </div>
       </el-col>
       <el-col :span="4" class="userinfo">
         <el-dropdown trigger="hover">
@@ -39,8 +39,10 @@
           @select="handleselect"
           unique-opened
           router
-          v-show="!collapsed"
-          style="width:100%; background-color: #eef1f6;"
+          :collapse="collapsed"
+          background-color="#eef1f6"
+          style="width:100%;"
+          :collapse-transition="false"
         >
           <template
             v-for="(item, index) in $router.options.routes"
@@ -48,7 +50,7 @@
           >
             <el-submenu :index="index + ''" v-if="!item.leaf">
               <template slot="title"
-                ><i :class="item.iconCls"></i>{{ item.name }}</template
+                ><i :class="item.iconCls"></i><span slot="title">{{ item.name }}</span></template
               >
               <el-menu-item
                 v-for="child in item.children"
@@ -62,12 +64,12 @@
               v-if="item.leaf && item.children.length > 0"
               :index="item.children[0].path"
               ><i :class="item.iconCls"></i
-              >{{ item.children[0].name }}</el-menu-item
+              ><span slot="title">{{ item.children[0].name }}</span></el-menu-item
             >
           </template>
         </el-menu>
         <!--导航菜单-折叠后-->
-        <ul
+        <!--ul
           class="el-menu el-menu-vertical-demo collapsed"
           v-show="collapsed"
           ref="menuCollapsed"
@@ -125,7 +127,7 @@
               </li>
             </template>
           </li>
-        </ul>
+        </ul-->
       </aside>
       <section class="content-container">
         <div class="grid-content bg-purple-light">
@@ -276,6 +278,7 @@ export default {
   height: 60px;
   line-height: 60px;
   cursor: pointer;
+  font-size: 22px;
 }
 .container .main {
   display: flex;
